@@ -12,3 +12,10 @@ def MACD(df,a,b,c):
 	df['Signal']=df['MACD'].ewm(span=c,min_periods=c).mean()
 	df['Histrogram']=df['MACD']-df['Signal']
 	return df
+	
+def getTarget(df,next):
+	conditions=[df['Close']==df['Open'],df['Open']>df['Close'],df['Open']<df['Close']]
+	choices=['Equal','Decreasing','Increasing']
+	df['target']=np.select(conditions,choices) 
+	df['target']=df['target'].shift(-next)
+	return df
