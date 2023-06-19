@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 
 from sklearn.preprocessing import StandardScaler
-from sklearn.decomposition import PCA
 
 import yfinance as yf
 
@@ -34,9 +33,3 @@ def standardize(X):
 	sc.fit(X)
 	X_std=sc.transform(X)
 	return X_std
-
-def runPCA(X_train_std):
-	pca=PCA()
-	X_train_pca=pca.fit_transform(X_train_std)
-	return pca.explained_variance_ratio_
-	
